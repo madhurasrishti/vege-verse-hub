@@ -40,7 +40,8 @@ const Home = () => {
       description: "Fresh tomatoes, olives, and herbs create this vibrant pasta dish perfect for any occasion.",
       cookTime: "25 min",
       servings: 4,
-      category: "Mediterranean"
+      category: "Mediterranean",
+      recipeUrl: "https://www.mediterraneanliving.com/recipe/mediterranean-vegetable-pasta/"
     },
     {
       title: "Indian Spiced Vegetable Curry",
@@ -48,7 +49,8 @@ const Home = () => {
       description: "Aromatic spices and fresh vegetables in a creamy coconut curry sauce.",
       cookTime: "35 min",
       servings: 6,
-      category: "Indian"
+      category: "Indian",
+      recipeUrl: "https://www.indianhealthyrecipes.com/vegetable-curry-recipe/"
     },
     {
       title: "Asian Rainbow Stir-Fry",
@@ -56,7 +58,8 @@ const Home = () => {
       description: "Colorful vegetables and tofu with a savory ginger-soy glaze.",
       cookTime: "15 min",
       servings: 3,
-      category: "Asian"
+      category: "Asian",
+      recipeUrl: "https://www.bbcgoodfood.com/recipes/vegetable-stir-fry"
     }
   ];
 
@@ -77,7 +80,7 @@ const Home = () => {
                     Vegetarian Recipes
                   </span>
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-xl">
+                <p className="text-xl text-foreground/80 max-w-xl">
                   Transform your cooking with delicious plant-based alternatives and recipes from around the world.
                 </p>
               </div>

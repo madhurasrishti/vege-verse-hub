@@ -38,19 +38,62 @@ const Converter = () => {
   };
 
   const convertToVegetarian = (recipe: string): string => {
-    // Simple rule-based conversion for demonstration
-    let converted = recipe
-      .replace(/ground beef|beef mince/gi, "lentils or plant-based ground meat")
-      .replace(/chicken breast|chicken/gi, "tofu or tempeh")
-      .replace(/fish\b/gi, "hearts of palm or banana peels")
-      .replace(/pork/gi, "jackfruit or king oyster mushrooms")
-      .replace(/bacon/gi, "smoky tempeh strips or mushroom bacon")
-      .replace(/chicken stock|beef stock|meat stock/gi, "vegetable stock")
-      .replace(/worcestershire sauce/gi, "vegetarian worcestershire sauce")
-      .replace(/gelatin/gi, "agar-agar")
-      .replace(/anchovy/gi, "capers or nori seaweed");
+    // Comprehensive meat substitution with "cannot convert" for difficult cases
+    let converted = recipe;
+    let cannotConvert = [];
+    
+    // Check for items that are too difficult to convert
+    const difficultItems = /\b(caviar|foie gras|blood sausage|haggis|tripe|sweetbreads|brain|kidney|liver|tongue|marrow)\b/gi;
+    const difficultMatches = recipe.match(difficultItems);
+    if (difficultMatches) {
+      cannotConvert = [...new Set(difficultMatches.map(item => item.toLowerCase()))];
+    }
 
-    return `🌱 VEGETARIAN VERSION:\n\n${converted}\n\n💡 COOKING TIPS:\n• Marinate tofu/tempeh for extra flavor\n• Add umami with mushrooms, soy sauce, or nutritional yeast\n• Season plant-based proteins well before cooking\n• Cook lentils until tender but not mushy`;
+    // Comprehensive meat replacements
+    converted = converted
+      // Beef variants
+      .replace(/\b(ground beef|beef mince|minced beef|hamburger meat)\b/gi, "lentils or plant-based ground meat")
+      .replace(/\b(beef steak|steak|sirloin|ribeye|filet mignon|tenderloin)\b/gi, "portobello mushrooms or seitan steaks")
+      .replace(/\b(beef roast|pot roast|chuck roast|brisket)\b/gi, "jackfruit or large portobello caps")
+      .replace(/\b(beef)\b/gi, "seitan or mushrooms")
+      
+      // Poultry variants
+      .replace(/\b(chicken breast|chicken thigh|chicken leg|chicken wing)\b/gi, "tofu or tempeh")
+      .replace(/\b(whole chicken|roasted chicken)\b/gi, "stuffed portobello or cauliflower")
+      .replace(/\b(chicken|poultry)\b/gi, "tofu or tempeh")
+      .replace(/\b(turkey|duck|goose)\b/gi, "seasoned seitan or jackfruit")
+      
+      // Pork variants  
+      .replace(/\b(pork chop|pork loin|pork shoulder|pork belly)\b/gi, "king oyster mushrooms or thick tempeh")
+      .replace(/\b(ham|prosciutto|pancetta|canadian bacon)\b/gi, "smoky tempeh or coconut bacon")
+      .replace(/\b(bacon|crispy bacon)\b/gi, "smoky tempeh strips or mushroom bacon")
+      .replace(/\b(sausage|bratwurst|chorizo|pepperoni|salami)\b/gi, "plant-based sausage or seasoned tempeh")
+      .replace(/\b(pork|pig)\b/gi, "jackfruit or king oyster mushrooms")
+      
+      // Lamb and mutton
+      .replace(/\b(lamb|mutton|lamb chop|leg of lamb)\b/gi, "eggplant steaks or seasoned jackfruit")
+      
+      // Seafood
+      .replace(/\b(salmon|tuna|cod|halibut|sea bass)\b/gi, "hearts of palm or banana peels")
+      .replace(/\b(shrimp|prawns|lobster|crab)\b/gi, "king oyster mushrooms or hearts of palm")
+      .replace(/\b(fish|seafood)\b/gi, "hearts of palm or banana peels")
+      .replace(/\b(scallops)\b/gi, "king oyster mushroom rounds")
+      
+      // Stocks and broths
+      .replace(/\b(chicken stock|beef stock|meat stock|bone broth)\b/gi, "vegetable stock")
+      .replace(/\b(fish sauce)\b/gi, "soy sauce or seaweed broth")
+      
+      // Other animal products
+      .replace(/\b(worcestershire sauce)\b/gi, "vegetarian worcestershire sauce")
+      .replace(/\b(gelatin)\b/gi, "agar-agar")
+      .replace(/\b(anchovy|anchovies)\b/gi, "capers or nori seaweed")
+      .replace(/\b(lard|beef fat|chicken fat)\b/gi, "coconut oil or vegetable oil");
+
+    if (cannotConvert.length > 0) {
+      return `⚠️ CANNOT CONVERT:\n\nSorry, this recipe contains ingredients that are too difficult to convert to vegetarian alternatives: ${cannotConvert.join(', ')}.\n\nThese specialty animal products don't have good plant-based substitutes that would maintain the dish's integrity.`;
+    }
+
+    return `🌱 VEGETARIAN VERSION:\n\n${converted}\n\n💡 COOKING TIPS:\n• Marinate tofu/tempeh for extra flavor\n• Add umami with mushrooms, soy sauce, or nutritional yeast\n• Season plant-based proteins well before cooking\n• Cook lentils until tender but not mushy\n• For smoky flavor, use liquid smoke or smoked paprika`;
   };
 
   const examples = [

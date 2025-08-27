@@ -9,12 +9,22 @@ interface RecipeCardProps {
   cookTime: string;
   servings: number;
   category: string;
+  recipeUrl?: string;
   className?: string;
 }
 
-const RecipeCard = ({ title, image, description, cookTime, servings, category, className }: RecipeCardProps) => {
+const RecipeCard = ({ title, image, description, cookTime, servings, category, recipeUrl, className }: RecipeCardProps) => {
+  const handleClick = () => {
+    if (recipeUrl) {
+      window.open(recipeUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
-    <Card className={`group overflow-hidden hover:shadow-card transition-all duration-300 hover:scale-[1.02] cursor-pointer ${className}`}>
+    <Card 
+      className={`group overflow-hidden hover:shadow-card transition-all duration-300 hover:scale-[1.02] cursor-pointer ${className}`}
+      onClick={handleClick}
+    >
       <div className="relative overflow-hidden">
         <img 
           src={image} 

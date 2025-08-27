@@ -20,7 +20,8 @@ const Cuisines = () => {
       description: "Rich and creamy arborio rice with wild mushrooms and parmesan cheese.",
       cookTime: "35 min",
       servings: 4,
-      category: "Italian"
+      category: "Italian",
+      recipeUrl: "https://www.bbcgoodfood.com/recipes/mushroom-risotto"
     },
     {
       title: "Chickpea Tikka Masala",
@@ -28,7 +29,8 @@ const Cuisines = () => {
       description: "Tender chickpeas in a spiced tomato-cream sauce, perfect with basmati rice.",
       cookTime: "30 min",
       servings: 6,
-      category: "Indian"
+      category: "Indian",
+      recipeUrl: "https://www.indianhealthyrecipes.com/chickpea-tikka-masala-recipe/"
     },
     {
       title: "Teriyaki Tofu Bowl",
@@ -36,7 +38,8 @@ const Cuisines = () => {
       description: "Crispy tofu with steamed vegetables in a sweet teriyaki glaze.",
       cookTime: "20 min",
       servings: 3,
-      category: "Asian"
+      category: "Asian",
+      recipeUrl: "https://minimalistbaker.com/easy-teriyaki-tofu/"
     },
     {
       title: "Mediterranean Quinoa Salad",
@@ -44,7 +47,8 @@ const Cuisines = () => {
       description: "Fresh quinoa with tomatoes, cucumbers, olives, and feta cheese.",
       cookTime: "15 min",
       servings: 5,
-      category: "Mediterranean"
+      category: "Mediterranean",
+      recipeUrl: "https://www.mediterraneanliving.com/recipe/mediterranean-quinoa-salad/"
     },
     {
       title: "Vegetarian Pad Thai",
@@ -52,7 +56,8 @@ const Cuisines = () => {
       description: "Classic Thai noodles with tofu, bean sprouts, and tamarind sauce.",
       cookTime: "25 min",
       servings: 4,
-      category: "Asian"
+      category: "Asian",
+      recipeUrl: "https://www.loveandlemons.com/pad-thai-recipe/"
     },
     {
       title: "Stuffed Bell Peppers",
@@ -60,7 +65,8 @@ const Cuisines = () => {
       description: "Bell peppers stuffed with rice, vegetables, and melted cheese.",
       cookTime: "45 min",
       servings: 4,
-      category: "American"
+      category: "American",
+      recipeUrl: "https://www.allrecipes.com/recipe/16330/stuffed-peppers/"
     },
     {
       title: "Palak Paneer",
@@ -68,7 +74,8 @@ const Cuisines = () => {
       description: "Fresh spinach curry with homemade paneer cheese and aromatic spices.",
       cookTime: "40 min",
       servings: 5,
-      category: "Indian"
+      category: "Indian",
+      recipeUrl: "https://www.indianhealthyrecipes.com/palak-paneer-recipe/"
     },
     {
       title: "Vegetarian Tacos",
@@ -76,7 +83,8 @@ const Cuisines = () => {
       description: "Soft tacos filled with seasoned black beans, avocado, and fresh salsa.",
       cookTime: "20 min",
       servings: 4,
-      category: "Mexican"
+      category: "Mexican",
+      recipeUrl: "https://cookieandkate.com/best-black-bean-tacos-recipe/"
     },
     {
       title: "Eggplant Parmigiana",
@@ -84,7 +92,8 @@ const Cuisines = () => {
       description: "Layers of breaded eggplant with marinara sauce and mozzarella cheese.",
       cookTime: "60 min",
       servings: 6,
-      category: "Italian"
+      category: "Italian",
+      recipeUrl: "https://www.bbcgoodfood.com/recipes/aubergine-parmigiana"
     }
   ];
 
