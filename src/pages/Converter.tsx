@@ -1,99 +1,87 @@
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Wand2, ArrowRight, Lightbulb, Clock, ChefHat } from "lucide-react";
+import { Wand2, ArrowRight, Lightbulb, Scale, ChefHat } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Converter = () => {
-  const [originalRecipe, setOriginalRecipe] = useState("");
-  const [convertedRecipe, setConvertedRecipe] = useState("");
-  const [isConverting, setIsConverting] = useState(false);
+  const [selectedIngredient, setSelectedIngredient] = useState("");
+  const [amount, setAmount] = useState("");
+  const [unit, setUnit] = useState("");
+  const [dishType, setDishType] = useState("");
+  const [conversion, setConversion] = useState<any>(null);
   const { toast } = useToast();
 
-  const handleConvert = async () => {
-    if (!originalRecipe.trim()) {
+  const ingredients = {
+    "Beef": {
+      "Ground beef": { savoury: "1 cup lentils or 200g plant-based ground", sweet: "Cannot convert" },
+      "Beef steak": { savoury: "2 large portobello mushroom caps or 200g seitan", sweet: "Cannot convert" },
+      "Beef roast": { savoury: "400g jackfruit or large cauliflower head", sweet: "Cannot convert" }
+    },
+    "Chicken": {
+      "Chicken breast": { savoury: "200g firm tofu or tempeh", sweet: "Cannot convert" },
+      "Whole chicken": { savoury: "1 large stuffed portobello or whole cauliflower", sweet: "Cannot convert" },
+      "Chicken thighs": { savoury: "150g tempeh or extra-firm tofu", sweet: "Cannot convert" }
+    },
+    "Pork": {
+      "Pork chops": { savoury: "2 thick king oyster mushroom steaks", sweet: "Cannot convert" },
+      "Bacon": { savoury: "3-4 strips tempeh bacon or coconut bacon", sweet: "Cannot convert" },
+      "Ground pork": { savoury: "1 cup seasoned lentils or plant-based ground", sweet: "Cannot convert" }
+    },
+    "Fish": {
+      "Salmon fillet": { savoury: "200g hearts of palm or banana peel 'fish'", sweet: "Cannot convert" },
+      "White fish": { savoury: "150g hearts of palm or tofu", sweet: "Cannot convert" },
+      "Tuna": { savoury: "1 cup chickpea salad or hearts of palm", sweet: "Cannot convert" }
+    },
+    "Seafood": {
+      "Shrimp": { savoury: "200g king oyster mushrooms or hearts of palm", sweet: "Cannot convert" },
+      "Crab": { savoury: "1 cup shredded hearts of palm", sweet: "Cannot convert" },
+      "Scallops": { savoury: "6-8 king oyster mushroom rounds", sweet: "Cannot convert" }
+    },
+    "Eggs": {
+      "Whole eggs": { savoury: "1/4 cup aquafaba or 1 tbsp ground flaxseed + 3 tbsp water", sweet: "1/4 cup applesauce or mashed banana" },
+      "Egg whites": { savoury: "2 tbsp aquafaba", sweet: "2 tbsp aquafaba" },
+      "Egg yolks": { savoury: "1 tbsp tahini or cashew cream", sweet: "1 tbsp cashew cream or vegan butter" }
+    },
+    "Dairy": {
+      "Milk": { savoury: "Plant milk (oat, soy, almond)", sweet: "Plant milk (oat, soy, almond)" },
+      "Butter": { savoury: "Vegan butter or coconut oil", sweet: "Vegan butter or coconut oil" },
+      "Cheese": { savoury: "Nutritional yeast or vegan cheese", sweet: "Vegan cream cheese" }
+    }
+  };
+
+  const handleConvert = () => {
+    if (!selectedIngredient || !amount || !dishType) {
       toast({
-        title: "Please enter a recipe",
-        description: "Add the non-vegetarian recipe you'd like to convert.",
+        title: "Please fill all fields",
+        description: "Select ingredient, amount, and dish type to convert.",
         variant: "destructive"
       });
       return;
     }
 
-    setIsConverting(true);
+    const [category, ingredient] = selectedIngredient.split(" - ");
+    const ingredientData = ingredients[category as keyof typeof ingredients];
+    const specificIngredient = ingredientData[ingredient as keyof typeof ingredientData];
     
-    // Simulate API conversion (in a real app, you'd call an AI service)
-    setTimeout(() => {
-      const converted = convertToVegetarian(originalRecipe);
-      setConvertedRecipe(converted);
-      setIsConverting(false);
+    if (specificIngredient) {
+      const result = specificIngredient[dishType as keyof typeof specificIngredient];
+      setConversion({
+        original: `${amount} ${unit} ${ingredient}`,
+        converted: result,
+        canConvert: result !== "Cannot convert"
+      });
       
       toast({
-        title: "Recipe converted successfully!",
-        description: "Your vegetarian version is ready.",
+        title: result === "Cannot convert" ? "Cannot convert this ingredient" : "Ingredient converted!",
+        description: result === "Cannot convert" ? "This ingredient doesn't work well in sweet dishes." : "Your vegetarian alternative is ready.",
+        variant: result === "Cannot convert" ? "destructive" : "default"
       });
-    }, 2000);
-  };
-
-  const convertToVegetarian = (recipe: string): string => {
-    // Comprehensive meat substitution with "cannot convert" for difficult cases
-    let converted = recipe;
-    let cannotConvert = [];
-    
-    // Check for items that are too difficult to convert
-    const difficultItems = /\b(caviar|foie gras|blood sausage|haggis|tripe|sweetbreads|brain|kidney|liver|tongue|marrow)\b/gi;
-    const difficultMatches = recipe.match(difficultItems);
-    if (difficultMatches) {
-      cannotConvert = [...new Set(difficultMatches.map(item => item.toLowerCase()))];
     }
-
-    // Comprehensive meat replacements
-    converted = converted
-      // Beef variants
-      .replace(/\b(ground beef|beef mince|minced beef|hamburger meat)\b/gi, "lentils or plant-based ground meat")
-      .replace(/\b(beef steak|steak|sirloin|ribeye|filet mignon|tenderloin)\b/gi, "portobello mushrooms or seitan steaks")
-      .replace(/\b(beef roast|pot roast|chuck roast|brisket)\b/gi, "jackfruit or large portobello caps")
-      .replace(/\b(beef)\b/gi, "seitan or mushrooms")
-      
-      // Poultry variants
-      .replace(/\b(chicken breast|chicken thigh|chicken leg|chicken wing)\b/gi, "tofu or tempeh")
-      .replace(/\b(whole chicken|roasted chicken)\b/gi, "stuffed portobello or cauliflower")
-      .replace(/\b(chicken|poultry)\b/gi, "tofu or tempeh")
-      .replace(/\b(turkey|duck|goose)\b/gi, "seasoned seitan or jackfruit")
-      
-      // Pork variants  
-      .replace(/\b(pork chop|pork loin|pork shoulder|pork belly)\b/gi, "king oyster mushrooms or thick tempeh")
-      .replace(/\b(ham|prosciutto|pancetta|canadian bacon)\b/gi, "smoky tempeh or coconut bacon")
-      .replace(/\b(bacon|crispy bacon)\b/gi, "smoky tempeh strips or mushroom bacon")
-      .replace(/\b(sausage|bratwurst|chorizo|pepperoni|salami)\b/gi, "plant-based sausage or seasoned tempeh")
-      .replace(/\b(pork|pig)\b/gi, "jackfruit or king oyster mushrooms")
-      
-      // Lamb and mutton
-      .replace(/\b(lamb|mutton|lamb chop|leg of lamb)\b/gi, "eggplant steaks or seasoned jackfruit")
-      
-      // Seafood
-      .replace(/\b(salmon|tuna|cod|halibut|sea bass)\b/gi, "hearts of palm or banana peels")
-      .replace(/\b(shrimp|prawns|lobster|crab)\b/gi, "king oyster mushrooms or hearts of palm")
-      .replace(/\b(fish|seafood)\b/gi, "hearts of palm or banana peels")
-      .replace(/\b(scallops)\b/gi, "king oyster mushroom rounds")
-      
-      // Stocks and broths
-      .replace(/\b(chicken stock|beef stock|meat stock|bone broth)\b/gi, "vegetable stock")
-      .replace(/\b(fish sauce)\b/gi, "soy sauce or seaweed broth")
-      
-      // Other animal products
-      .replace(/\b(worcestershire sauce)\b/gi, "vegetarian worcestershire sauce")
-      .replace(/\b(gelatin)\b/gi, "agar-agar")
-      .replace(/\b(anchovy|anchovies)\b/gi, "capers or nori seaweed")
-      .replace(/\b(lard|beef fat|chicken fat)\b/gi, "coconut oil or vegetable oil");
-
-    if (cannotConvert.length > 0) {
-      return `⚠️ CANNOT CONVERT:\n\nSorry, this recipe contains ingredients that are too difficult to convert to vegetarian alternatives: ${cannotConvert.join(', ')}.\n\nThese specialty animal products don't have good plant-based substitutes that would maintain the dish's integrity.`;
-    }
-
-    return `🌱 VEGETARIAN VERSION:\n\n${converted}\n\n💡 COOKING TIPS:\n• Marinate tofu/tempeh for extra flavor\n• Add umami with mushrooms, soy sauce, or nutritional yeast\n• Season plant-based proteins well before cooking\n• Cook lentils until tender but not mushy\n• For smoky flavor, use liquid smoke or smoked paprika`;
   };
 
   const examples = [
@@ -125,13 +113,13 @@ const Converter = () => {
             <Wand2 className="h-10 w-10 text-primary" />
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Recipe
+            Ingredient
             <span className="bg-gradient-primary bg-clip-text text-transparent block">
               Converter
             </span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Transform any non-vegetarian recipe into a delicious plant-based version
+            Convert specific meat, fish, egg, and dairy ingredients to vegetarian alternatives with precise measurements
           </p>
         </div>
       </section>
@@ -144,35 +132,83 @@ const Converter = () => {
             <Card className="h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <ChefHat className="h-5 w-5 text-primary" />
-                  <span>Original Recipe</span>
+                  <Scale className="h-5 w-5 text-primary" />
+                  <span>Select Ingredient</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Textarea
-                  placeholder="Paste your non-vegetarian recipe here... Include ingredients and cooking instructions for best results."
-                  value={originalRecipe}
-                  onChange={(e) => setOriginalRecipe(e.target.value)}
-                  className="min-h-[300px] resize-none"
-                />
+                <div className="space-y-2">
+                  <Label htmlFor="ingredient">Choose Ingredient</Label>
+                  <Select value={selectedIngredient} onValueChange={setSelectedIngredient}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select an ingredient to convert" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.entries(ingredients).map(([category, items]) => (
+                        Object.keys(items).map(ingredient => (
+                          <SelectItem key={`${category} - ${ingredient}`} value={`${category} - ${ingredient}`}>
+                            {ingredient}
+                          </SelectItem>
+                        ))
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
+                    <Label htmlFor="amount">Amount</Label>
+                    <Input
+                      id="amount"
+                      type="number"
+                      placeholder="1"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="unit">Unit</Label>
+                    <Select value={unit} onValueChange={setUnit}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Unit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="cup">cup</SelectItem>
+                        <SelectItem value="cups">cups</SelectItem>
+                        <SelectItem value="g">g</SelectItem>
+                        <SelectItem value="kg">kg</SelectItem>
+                        <SelectItem value="oz">oz</SelectItem>
+                        <SelectItem value="lb">lb</SelectItem>
+                        <SelectItem value="piece">piece</SelectItem>
+                        <SelectItem value="pieces">pieces</SelectItem>
+                        <SelectItem value="tbsp">tbsp</SelectItem>
+                        <SelectItem value="tsp">tsp</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="dishType">Dish Type</Label>
+                  <Select value={dishType} onValueChange={setDishType}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select dish type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="savoury">Savoury</SelectItem>
+                      <SelectItem value="sweet">Sweet</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
                 <Button 
                   onClick={handleConvert}
-                  disabled={isConverting}
                   className="w-full bg-primary hover:bg-primary/90 shadow-glow"
                   size="lg"
                 >
-                  {isConverting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Converting...
-                    </>
-                  ) : (
-                    <>
-                      <Wand2 className="mr-2 h-5 w-5" />
-                      Convert to Vegetarian
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </>
-                  )}
+                  <Wand2 className="mr-2 h-5 w-5" />
+                  Convert Ingredient
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </CardContent>
             </Card>
@@ -182,24 +218,41 @@ const Converter = () => {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <Lightbulb className="h-5 w-5 text-primary" />
-                  <span>Vegetarian Version</span>
+                  <span>Vegetarian Alternative</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                {convertedRecipe ? (
-                  <div className="bg-muted/50 rounded-lg p-4 min-h-[300px]">
-                    <pre className="whitespace-pre-wrap text-sm text-foreground font-medium">
-                      {convertedRecipe}
-                    </pre>
+                {conversion ? (
+                  <div className="space-y-4">
+                    {conversion.canConvert ? (
+                      <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                        <h3 className="font-semibold text-green-800 dark:text-green-300 mb-2">✅ Conversion Successful</h3>
+                        <div className="space-y-2">
+                          <p className="text-sm text-muted-foreground">
+                            <strong>Original:</strong> {conversion.original}
+                          </p>
+                          <p className="text-sm text-foreground">
+                            <strong>Replace with:</strong> {conversion.converted}
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                        <h3 className="font-semibold text-red-800 dark:text-red-300 mb-2">❌ Cannot Convert</h3>
+                        <p className="text-sm text-muted-foreground">
+                          This ingredient doesn't work well in sweet dishes and doesn't have a suitable vegetarian alternative for that context.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 ) : (
-                  <div className="min-h-[300px] flex items-center justify-center text-center">
+                  <div className="min-h-[200px] flex items-center justify-center text-center">
                     <div className="space-y-4">
                       <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
-                        <Clock className="h-8 w-8 text-muted-foreground" />
+                        <Scale className="h-8 w-8 text-muted-foreground" />
                       </div>
                       <p className="text-muted-foreground">
-                        Your converted vegetarian recipe will appear here
+                        Select an ingredient and get precise vegetarian alternatives with measurements
                       </p>
                     </div>
                   </div>
@@ -214,26 +267,46 @@ const Converter = () => {
       <section className="py-16 bg-muted/30">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Conversion Examples</h2>
+            <h2 className="text-3xl font-bold mb-4">Common Conversions</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              See how popular dishes can be transformed into vegetarian versions
+              Popular ingredient substitutions with precise measurements
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {examples.map((example, index) => (
-              <Card key={index} className="hover:shadow-card transition-all duration-300">
-                <CardHeader>
-                  <CardTitle className="text-lg">{example.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-muted-foreground">{example.description}</p>
-                  <div className="p-3 bg-primary/5 rounded-lg border-l-4 border-l-primary">
-                    <p className="text-sm font-medium text-primary">{example.tip}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            <Card className="hover:shadow-card transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-lg">Ground Beef → Lentils</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground">1 lb ground beef = 1.5 cups cooked lentils</p>
+                <div className="p-3 bg-primary/5 rounded-lg border-l-4 border-l-primary">
+                  <p className="text-sm font-medium text-primary">Cook lentils with umami seasonings</p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-card transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-lg">Chicken Breast → Tofu</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground">1 chicken breast = 200g firm tofu</p>
+                <div className="p-3 bg-primary/5 rounded-lg border-l-4 border-l-primary">
+                  <p className="text-sm font-medium text-primary">Press tofu and marinate well</p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-card transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-lg">Eggs → Flax Eggs</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground">1 egg = 1 tbsp ground flax + 3 tbsp water</p>
+                <div className="p-3 bg-primary/5 rounded-lg border-l-4 border-l-primary">
+                  <p className="text-sm font-medium text-primary">Let mixture sit for 5 minutes</p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -243,26 +316,26 @@ const Converter = () => {
         <div className="container">
           <Card className="bg-gradient-card border-0 shadow-elegant">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl mb-2">Pro Conversion Tips</CardTitle>
+              <CardTitle className="text-2xl mb-2">Conversion Tips</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-primary">Protein Substitutions:</h3>
+                  <h3 className="font-semibold text-primary">Measurement Guidelines:</h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• <strong>Tofu:</strong> Great for stir-fries and grilled dishes</li>
-                    <li>• <strong>Tempeh:</strong> Nutty flavor, perfect for bacon substitute</li>
-                    <li>• <strong>Lentils:</strong> Excellent for ground meat replacements</li>
-                    <li>• <strong>Mushrooms:</strong> Umami-rich, meaty texture</li>
+                    <li>• <strong>Weight vs Volume:</strong> Use weight for more precision</li>
+                    <li>• <strong>Protein density:</strong> Plant proteins may need more seasoning</li>
+                    <li>• <strong>Liquid content:</strong> Some substitutes release more moisture</li>
+                    <li>• <strong>Cooking time:</strong> May vary from original ingredient</li>
                   </ul>
                 </div>
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-primary">Flavor Enhancers:</h3>
+                  <h3 className="font-semibold text-primary">Best Practices:</h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• <strong>Nutritional yeast:</strong> Adds cheesy, nutty flavor</li>
-                    <li>• <strong>Soy sauce:</strong> Provides umami depth</li>
-                    <li>• <strong>Liquid smoke:</strong> Creates smoky meat-like taste</li>
-                    <li>• <strong>Herbs & spices:</strong> Enhance all plant-based proteins</li>
+                    <li>• <strong>Start small:</strong> Test conversions in small batches</li>
+                    <li>• <strong>Season well:</strong> Plant proteins need more flavor</li>
+                    <li>• <strong>Texture matters:</strong> Consider mouthfeel in substitutions</li>
+                    <li>• <strong>Cook properly:</strong> Different proteins need different techniques</li>
                   </ul>
                 </div>
               </div>
