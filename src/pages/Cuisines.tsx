@@ -4,9 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { Filter } from "lucide-react";
-import indianCurry from "@/assets/indian-veggie-curry.jpg";
-import mediterraneanPasta from "@/assets/mediterranean-pasta.jpg";
-import asianStirFry from "@/assets/asian-stir-fry.jpg";
+import lentilBolognese from "@/assets/lentil-bolognese.jpg";
+import chickpeaCurry from "@/assets/chickpea-curry.jpg";
+import stuffedPeppers from "@/assets/stuffed-peppers.jpg";
+import veggieTacos from "@/assets/veggie-tacos.jpg";
+import mushroomRisotto from "@/assets/mushroom-risotto.jpg";
+import capreseSalad from "@/assets/caprese-salad.jpg";
+import ratatouille from "@/assets/ratatouille.jpg";
+import veggieBuddha from "@/assets/veggie-buddha-bowl.jpg";
 
 const Cuisines = () => {
   const [selectedCuisine, setSelectedCuisine] = useState("All");
@@ -16,8 +21,8 @@ const Cuisines = () => {
   const recipes = [
     {
       title: "Creamy Mushroom Risotto",
-      image: mediterraneanPasta,
-      description: "Rich and creamy arborio rice with wild mushrooms and parmesan cheese.",
+      image: mushroomRisotto,
+      description: "Rich and creamy arborio rice with wild mushrooms, herbs, and parmesan cheese.",
       cookTime: "35 min",
       servings: 4,
       category: "Italian",
@@ -25,52 +30,52 @@ const Cuisines = () => {
     },
     {
       title: "Chickpea Tikka Masala",
-      image: indianCurry,
+      image: chickpeaCurry,
       description: "Tender chickpeas in a spiced tomato-cream sauce, perfect with basmati rice.",
       cookTime: "30 min",
       servings: 6,
       category: "Indian",
-      recipeUrl: "https://www.indianhealthyrecipes.com/chickpea-tikka-masala-recipe/"
+      recipeUrl: "https://rainbowplantlife.com/chickpea-tikka-masala/"
     },
     {
-      title: "Teriyaki Tofu Bowl",
-      image: asianStirFry,
-      description: "Crispy tofu with steamed vegetables in a sweet teriyaki glaze.",
-      cookTime: "20 min",
-      servings: 3,
-      category: "Asian",
-      recipeUrl: "https://minimalistbaker.com/easy-teriyaki-tofu/"
-    },
-    {
-      title: "Mediterranean Quinoa Salad",
-      image: mediterraneanPasta,
-      description: "Fresh quinoa with tomatoes, cucumbers, olives, and feta cheese.",
-      cookTime: "15 min",
-      servings: 5,
-      category: "Mediterranean",
-      recipeUrl: "https://www.mediterraneanliving.com/recipe/mediterranean-quinoa-salad/"
-    },
-    {
-      title: "Vegetarian Pad Thai",
-      image: asianStirFry,
-      description: "Classic Thai noodles with tofu, bean sprouts, and tamarind sauce.",
+      title: "Healthy Buddha Bowl",
+      image: veggieBuddha,
+      description: "Nourishing bowl with quinoa, roasted vegetables, avocado, and tahini dressing.",
       cookTime: "25 min",
-      servings: 4,
+      servings: 2,
       category: "Asian",
-      recipeUrl: "https://www.loveandlemons.com/pad-thai-recipe/"
+      recipeUrl: "https://minimalistbaker.com/the-best-buddha-bowl-recipe/"
     },
     {
-      title: "Stuffed Bell Peppers",
-      image: mediterraneanPasta,
-      description: "Bell peppers stuffed with rice, vegetables, and melted cheese.",
+      title: "Caprese Salad",
+      image: capreseSalad,
+      description: "Fresh mozzarella, tomatoes, and basil with balsamic glaze and olive oil.",
+      cookTime: "10 min",
+      servings: 4,
+      category: "Mediterranean",
+      recipeUrl: "https://www.foodnetwork.com/recipes/ree-drummond/caprese-salad-recipe"
+    },
+    {
+      title: "Lentil Bolognese Pasta",
+      image: lentilBolognese,
+      description: "Hearty lentil sauce with herbs and tomatoes served over fresh pasta.",
+      cookTime: "35 min",
+      servings: 4,
+      category: "Italian",
+      recipeUrl: "https://www.loveandlemons.com/lentil-bolognese/"
+    },
+    {
+      title: "Quinoa Stuffed Bell Peppers",
+      image: stuffedPeppers,
+      description: "Bell peppers stuffed with quinoa, vegetables, herbs, and melted cheese.",
       cookTime: "45 min",
       servings: 4,
       category: "American",
-      recipeUrl: "https://www.allrecipes.com/recipe/16330/stuffed-peppers/"
+      recipeUrl: "https://cookieandkate.com/stuffed-peppers-recipe/"
     },
     {
       title: "Palak Paneer",
-      image: indianCurry,
+      image: chickpeaCurry,
       description: "Fresh spinach curry with homemade paneer cheese and aromatic spices.",
       cookTime: "40 min",
       servings: 5,
@@ -78,8 +83,8 @@ const Cuisines = () => {
       recipeUrl: "https://www.indianhealthyrecipes.com/palak-paneer-recipe/"
     },
     {
-      title: "Vegetarian Tacos",
-      image: asianStirFry,
+      title: "Black Bean Tacos",
+      image: veggieTacos,
       description: "Soft tacos filled with seasoned black beans, avocado, and fresh salsa.",
       cookTime: "20 min",
       servings: 4,
@@ -87,13 +92,13 @@ const Cuisines = () => {
       recipeUrl: "https://cookieandkate.com/best-black-bean-tacos-recipe/"
     },
     {
-      title: "Eggplant Parmigiana",
-      image: mediterraneanPasta,
-      description: "Layers of breaded eggplant with marinara sauce and mozzarella cheese.",
-      cookTime: "60 min",
+      title: "French Ratatouille",
+      image: ratatouille,
+      description: "Traditional French vegetable stew with eggplant, zucchini, and tomatoes.",
+      cookTime: "45 min",
       servings: 6,
-      category: "Italian",
-      recipeUrl: "https://www.bbcgoodfood.com/recipes/aubergine-parmigiana"
+      category: "Mediterranean",
+      recipeUrl: "https://www.bbcgoodfood.com/recipes/ratatouille"
     }
   ];
 

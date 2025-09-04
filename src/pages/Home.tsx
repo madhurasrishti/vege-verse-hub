@@ -5,9 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Leaf, Heart, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-veggie-bowl.jpg";
-import indianCurry from "@/assets/indian-veggie-curry.jpg";
-import mediterraneanPasta from "@/assets/mediterranean-pasta.jpg";
-import asianStirFry from "@/assets/asian-stir-fry.jpg";
+import lentilBolognese from "@/assets/lentil-bolognese.jpg";
+import chickpeaCurry from "@/assets/chickpea-curry.jpg";
+import stuffedPeppers from "@/assets/stuffed-peppers.jpg";
 
 const Home = () => {
   const alternatives = [
@@ -35,31 +35,31 @@ const Home = () => {
 
   const featuredRecipes = [
     {
-      title: "Mediterranean Veggie Pasta",
-      image: mediterraneanPasta,
-      description: "Fresh tomatoes, olives, and herbs create this vibrant pasta dish perfect for any occasion.",
-      cookTime: "25 min",
+      title: "Lentil Bolognese Pasta",
+      image: lentilBolognese,
+      description: "Rich and hearty lentil bolognese sauce served over fresh pasta with herbs and parmesan.",
+      cookTime: "35 min",
       servings: 4,
-      category: "Mediterranean",
-      recipeUrl: "https://www.mediterraneanliving.com/recipe/mediterranean-vegetable-pasta/"
+      category: "Italian",
+      recipeUrl: "https://www.loveandlemons.com/lentil-bolognese/"
     },
     {
-      title: "Indian Spiced Vegetable Curry",
-      image: indianCurry,
-      description: "Aromatic spices and fresh vegetables in a creamy coconut curry sauce.",
-      cookTime: "35 min",
+      title: "Chickpea Curry Bowl",
+      image: chickpeaCurry,
+      description: "Aromatic spices and fresh vegetables in a creamy coconut curry sauce with chickpeas.",
+      cookTime: "30 min",
       servings: 6,
       category: "Indian",
-      recipeUrl: "https://www.indianhealthyrecipes.com/vegetable-curry-recipe/"
+      recipeUrl: "https://rainbowplantlife.com/vegan-chickpea-curry/"
     },
     {
-      title: "Asian Rainbow Stir-Fry",
-      image: asianStirFry,
-      description: "Colorful vegetables and tofu with a savory ginger-soy glaze.",
-      cookTime: "15 min",
-      servings: 3,
-      category: "Asian",
-      recipeUrl: "https://www.bbcgoodfood.com/recipes/vegetable-stir-fry"
+      title: "Quinoa Stuffed Bell Peppers",
+      image: stuffedPeppers,
+      description: "Colorful bell peppers stuffed with quinoa, vegetables, and herbs for a nutritious meal.",
+      cookTime: "45 min",
+      servings: 4,
+      category: "American",
+      recipeUrl: "https://cookieandkate.com/stuffed-peppers-recipe/"
     }
   ];
 
