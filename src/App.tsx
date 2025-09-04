@@ -25,8 +25,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Cuisines" element={<Cuisines />} />
-          <Route path="/Converter" element={<Converter />} />
+          <Route path="/cuisines" element={<Cuisines />} />
+          <Route path="/converter" element={<Converter />} />
+
           <Route path="/recipes/lentil-bolognese" element={<LentilBolognese />} />
           <Route path="/recipes/chickpea-tikka-masala" element={<ChickpeaTikkaMasala />} />
           <Route path="/recipes/palak-paneer" element={<PalakPaneer />} />
