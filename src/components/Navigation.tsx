@@ -13,7 +13,7 @@ const Navigation = () => {
         <Link to="/" className="flex items-center space-x-2">
           <Leaf className="h-8 w-8 text-primary" />
           <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            VeggieCook
+            Veggie Heaven
           </span>
         </Link>
         
