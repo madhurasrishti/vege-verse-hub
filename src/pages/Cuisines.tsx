@@ -9,15 +9,13 @@ import chickpeaCurry from "@/assets/chickpea-curry.jpg";
 import stuffedPeppers from "@/assets/stuffed-peppers.jpg";
 import veggieTacos from "@/assets/veggie-tacos.jpg";
 import mushroomRisotto from "@/assets/mushroom-risotto.jpg";
-import capreseSalad from "@/assets/caprese-salad.jpg";
-import ratatouille from "@/assets/ratatouille.jpg";
 import palakPaneer from "@/assets/palak-paneer.jpg";
 import veggieBuddha from "@/assets/veggie-buddha-bowl.jpg";
 
 const Cuisines = () => {
   const [selectedCuisine, setSelectedCuisine] = useState("All");
 
-  const cuisines = ["All", "Italian", "Indian", "Asian", "Mediterranean", "Mexican", "American"];
+  const cuisines = ["All", "Italian", "Indian", "Asian", "Mexican", "American"];
 
   const recipes = [
     {
@@ -46,15 +44,6 @@ const Cuisines = () => {
       servings: 2,
       category: "Asian",
       recipeUrl: "/recipes/buddha-bowl"
-    },
-    {
-      title: "Caprese Salad",
-      image: capreseSalad,
-      description: "Fresh mozzarella, tomatoes, and basil with balsamic glaze and olive oil.",
-      cookTime: "10 min",
-      servings: 4,
-      category: "Mediterranean",
-      recipeUrl: "/recipes/caprese-salad"
     },
     {
       title: "Lentil Bolognese Pasta",
@@ -91,15 +80,6 @@ const Cuisines = () => {
       servings: 4,
       category: "Mexican",
       recipeUrl: "/recipes/veggie-tacos"
-    },
-    {
-      title: "French Ratatouille",
-      image: ratatouille,
-      description: "Traditional French vegetable stew with eggplant, zucchini, and tomatoes.",
-      cookTime: "45 min",
-      servings: 6,
-      category: "Mediterranean",
-      recipeUrl: "/recipes/ratatouille"
     }
   ];
 
