@@ -11,6 +11,7 @@ import veggieTacos from "@/assets/veggie-tacos.jpg";
 import mushroomRisotto from "@/assets/mushroom-risotto.jpg";
 import capreseSalad from "@/assets/caprese-salad.jpg";
 import ratatouille from "@/assets/ratatouille.jpg";
+import palakPaneer from "@/assets/palak-paneer.jpg";
 import veggieBuddha from "@/assets/veggie-buddha-bowl.jpg";
 
 const Cuisines = () => {
@@ -26,7 +27,7 @@ const Cuisines = () => {
       cookTime: "35 min",
       servings: 4,
       category: "Italian",
-      recipeUrl: "https://www.bbcgoodfood.com/recipes/mushroom-risotto"
+      recipeUrl: "/recipes/mushroom-risotto"
     },
     {
       title: "Chickpea Tikka Masala",
@@ -35,7 +36,7 @@ const Cuisines = () => {
       cookTime: "30 min",
       servings: 6,
       category: "Indian",
-      recipeUrl: "https://rainbowplantlife.com/chickpea-tikka-masala/"
+      recipeUrl: "/recipes/chickpea-tikka-masala"
     },
     {
       title: "Healthy Buddha Bowl",
@@ -44,7 +45,7 @@ const Cuisines = () => {
       cookTime: "25 min",
       servings: 2,
       category: "Asian",
-      recipeUrl: "https://minimalistbaker.com/the-best-buddha-bowl-recipe/"
+      recipeUrl: "/recipes/buddha-bowl"
     },
     {
       title: "Caprese Salad",
@@ -53,7 +54,7 @@ const Cuisines = () => {
       cookTime: "10 min",
       servings: 4,
       category: "Mediterranean",
-      recipeUrl: "https://www.foodnetwork.com/recipes/ree-drummond/caprese-salad-recipe"
+      recipeUrl: "/recipes/caprese-salad"
     },
     {
       title: "Lentil Bolognese Pasta",
@@ -62,7 +63,7 @@ const Cuisines = () => {
       cookTime: "35 min",
       servings: 4,
       category: "Italian",
-      recipeUrl: "https://www.loveandlemons.com/lentil-bolognese/"
+      recipeUrl: "/recipes/lentil-bolognese"
     },
     {
       title: "Quinoa Stuffed Bell Peppers",
@@ -71,16 +72,16 @@ const Cuisines = () => {
       cookTime: "45 min",
       servings: 4,
       category: "American",
-      recipeUrl: "https://cookieandkate.com/stuffed-peppers-recipe/"
+      recipeUrl: "/recipes/stuffed-peppers"
     },
     {
       title: "Palak Paneer",
-      image: chickpeaCurry,
+      image: palakPaneer,
       description: "Fresh spinach curry with homemade paneer cheese and aromatic spices.",
       cookTime: "40 min",
       servings: 5,
       category: "Indian",
-      recipeUrl: "https://www.indianhealthyrecipes.com/palak-paneer-recipe/"
+      recipeUrl: "/recipes/palak-paneer"
     },
     {
       title: "Black Bean Tacos",
@@ -89,7 +90,7 @@ const Cuisines = () => {
       cookTime: "20 min",
       servings: 4,
       category: "Mexican",
-      recipeUrl: "https://cookieandkate.com/best-black-bean-tacos-recipe/"
+      recipeUrl: "/recipes/veggie-tacos"
     },
     {
       title: "French Ratatouille",
@@ -98,7 +99,7 @@ const Cuisines = () => {
       cookTime: "45 min",
       servings: 6,
       category: "Mediterranean",
-      recipeUrl: "https://www.bbcgoodfood.com/recipes/ratatouille"
+      recipeUrl: "/recipes/ratatouille"
     }
   ];
 

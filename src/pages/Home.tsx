@@ -41,7 +41,7 @@ const Home = () => {
       cookTime: "35 min",
       servings: 4,
       category: "Italian",
-      recipeUrl: "https://www.loveandlemons.com/lentil-bolognese/"
+      recipeUrl: "/recipes/lentil-bolognese"
     },
     {
       title: "Chickpea Curry Bowl",
@@ -50,7 +50,7 @@ const Home = () => {
       cookTime: "30 min",
       servings: 6,
       category: "Indian",
-      recipeUrl: "https://rainbowplantlife.com/vegan-chickpea-curry/"
+      recipeUrl: "/recipes/chickpea-tikka-masala"
     },
     {
       title: "Quinoa Stuffed Bell Peppers",
@@ -59,7 +59,7 @@ const Home = () => {
       cookTime: "45 min",
       servings: 4,
       category: "American",
-      recipeUrl: "https://cookieandkate.com/stuffed-peppers-recipe/"
+      recipeUrl: "/recipes/stuffed-peppers"
     }
   ];
 
