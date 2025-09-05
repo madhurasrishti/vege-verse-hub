@@ -9,6 +9,32 @@ import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import chickpeaCurry from "@/assets/chickpea-curry.jpg";
 
 const ChickpeaTikkaMasala = () => {
+  useEffect(() => {
+    document.title = "Authentic Chickpea Tikka Masala Indian Vegetarian Recipe | Restaurant Style";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Authentic chickpea tikka masala Indian vegetarian recipe with creamy tomato sauce. Restaurant-style comfort food ready in 30 minutes for busy weeknights.');
+    }
+
+    const recipeData = {
+      name: "Authentic Chickpea Tikka Masala Indian Vegetarian",
+      description: "Tender chickpeas in a spiced tomato-cream sauce, perfect with basmati rice. A comforting and flavorful vegetarian version of the classic Indian dish ready in just 30 minutes.",
+      image: "https://your-domain.com" + chickpeaCurry,
+      prepTime: "10min",
+      cookTime: "20min", 
+      totalTime: "30min",
+      servings: "6 servings",
+      difficulty: "Medium",
+      cuisine: "Indian",
+      ingredients,
+      instructions,
+      keywords: "authentic chickpea tikka masala indian vegetarian recipe, restaurant style comfort food, creamy tomato curry sauce, high protein plant based dinner",
+      url: "https://your-domain.com/recipes/chickpea-tikka-masala"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "2 cans (15oz each) chickpeas, drained and rinsed",
     "2 tbsp ghee or vegetable oil",
@@ -42,128 +68,32 @@ const ChickpeaTikkaMasala = () => {
     "Serve over basmati rice and garnish with fresh cilantro."
   ];
 
-  useEffect(() => {
-    // SEO Metadata
-    document.title =
-      "Chickpea Tikka Masala | Authentic Indian Vegetarian Curry Recipe | Veggie Heaven";
-
-    const metaDescription = document.querySelector(
-      'meta[name="description"]'
-    );
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Learn how to make authentic chickpea tikka masala with creamy tomato curry sauce. A flavorful, protein-packed vegetarian Indian recipe ready in 30 minutes."
-      );
-    } else {
-      const newMeta = document.createElement("meta");
-      newMeta.name = "description";
-      newMeta.content =
-        "Learn how to make authentic chickpea tikka masala with creamy tomato curry sauce. A flavorful, protein-packed vegetarian Indian recipe ready in 30 minutes.";
-      document.head.appendChild(newMeta);
-    }
-
-    // Extra meta tags for SEO & social
-    const keywordsMeta = document.createElement("meta");
-    keywordsMeta.name = "keywords";
-    keywordsMeta.content =
-      "chickpea tikka masala recipe, authentic Indian vegetarian curry, restaurant style chickpea curry, vegan Indian dinner, creamy tomato chickpea curry, high protein vegetarian recipes, easy Indian curry for beginners, plant based dinner ideas, healthy vegetarian Indian food, quick chickpea curry 30 minutes";
-    document.head.appendChild(keywordsMeta);
-
-    const ogTitle = document.createElement("meta");
-    ogTitle.setAttribute("property", "og:title");
-    ogTitle.content =
-      "Chickpea Tikka Masala | Authentic Indian Vegetarian Curry | Veggie Heaven";
-    document.head.appendChild(ogTitle);
-
-    const ogDesc = document.createElement("meta");
-    ogDesc.setAttribute("property", "og:description");
-    ogDesc.content =
-      "Easy restaurant-style chickpea tikka masala with creamy tomato curry sauce. Vegetarian, protein-rich, and perfect for busy weeknights.";
-    document.head.appendChild(ogDesc);
-
-    const ogImage = document.createElement("meta");
-    ogImage.setAttribute("property", "og:image");
-    ogImage.content = "https://your-domain.com" + chickpeaCurry;
-    document.head.appendChild(ogImage);
-
-    const canonical = document.createElement("link");
-    canonical.setAttribute("rel", "canonical");
-    canonical.setAttribute(
-      "href",
-      "https://your-domain.com/recipes/chickpea-tikka-masala"
-    );
-    document.head.appendChild(canonical);
-
-    // JSON-LD Structured Data
-    const recipeData = {
-      name: "Chickpea Tikka Masala | Authentic Indian Vegetarian Curry",
-      description:
-        "Tender chickpeas in a spiced tomato-cream sauce, perfect with basmati rice. A comforting and flavorful vegetarian version of the classic Indian dish ready in just 30 minutes.",
-      image: "https://your-domain.com" + chickpeaCurry,
-      prepTime: "PT10M",
-      cookTime: "PT20M",
-      totalTime: "PT30M",
-      recipeYield: "6 servings",
-      recipeCategory: "Dinner",
-      recipeCuisine: "Indian",
-      keywords:
-        "chickpea tikka masala, Indian curry, vegetarian curry, vegan Indian recipe, healthy plant based dinner, quick vegetarian curry",
-      recipeIngredient: ingredients,
-      recipeInstructions: instructions.map((step, i) => ({
-        "@type": "HowToStep",
-        text: step,
-        position: i + 1,
-      })),
-      nutrition: {
-        "@type": "NutritionInformation",
-        calories: "280 calories",
-        proteinContent: "11g",
-        carbohydrateContent: "34g",
-        fatContent: "12g",
-      },
-      url: "https://your-domain.com/recipes/chickpea-tikka-masala",
-    };
-
-    const jsonLd = generateRecipeJsonLd(recipeData);
-    injectJsonLd(jsonLd);
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-
+      
       <div className="container py-8">
-        <Link
-          to="/cuisines"
-          className="inline-flex items-center text-primary hover:text-primary/80 mb-6"
-        >
+        <Link to="/cuisines" className="inline-flex items-center text-primary hover:text-primary/80 mb-6">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Recipes
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-12">
           <div>
-            <img
-              src={chickpeaCurry}
-              alt="Chickpea tikka masala Indian vegetarian curry with creamy tomato sauce and aromatic spices"
+            <img 
+              src={chickpeaCurry} 
+              alt="Authentic chickpea tikka masala Indian vegetarian recipe with creamy tomato sauce and aromatic spices"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
-              loading="lazy"
             />
           </div>
 
           <div className="space-y-6">
             <div>
-              <Badge variant="secondary" className="mb-4">
-                Indian
-              </Badge>
-              <h1 className="text-4xl font-bold mb-4">
-                Chickpea Tikka Masala
-              </h1>
+              <Badge variant="secondary" className="mb-4">Indian</Badge>
+              <h1 className="text-4xl font-bold mb-4">Chickpea Tikka Masala</h1>
               <p className="text-lg text-muted-foreground mb-6">
-                Tender chickpeas in a spiced tomato-cream sauce, perfect with
-                basmati rice. A comforting and flavorful vegetarian version of
-                the classic Indian dish.
+                Tender chickpeas in a spiced tomato-cream sauce, perfect with basmati rice. 
+                A comforting and flavorful vegetarian version of the classic Indian dish.
               </p>
             </div>
 
@@ -212,9 +142,7 @@ const ChickpeaTikkaMasala = () => {
                     <span className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-medium mr-3 flex-shrink-0 mt-0.5">
                       {index + 1}
                     </span>
-                    <span className="text-sm leading-relaxed">
-                      {instruction}
-                    </span>
+                    <span className="text-sm leading-relaxed">{instruction}</span>
                   </li>
                 ))}
               </ol>
