@@ -4,9 +4,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import veggieBuddha from "@/assets/veggie-buddha-bowl.jpg";
 
 const BuddhaBowl = () => {
+  useEffect(() => {
+    document.title = "Colorful Buddha Bowl Meal Prep Healthy Recipe | Nutritious Plant-Based";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Colorful buddha bowl meal prep healthy recipe with quinoa, roasted vegetables and tahini dressing. Nutritious plant-based dinner ready in 25 minutes.');
+    }
+
+    const recipeData = {
+      name: "Colorful Buddha Bowl Meal Prep Healthy",
+      description: "Nourishing bowl with quinoa, roasted vegetables, avocado, and tahini dressing. A colorful and nutritious meal packed with plant-based proteins and vitamins, perfect for meal prep.",
+      image: "https://your-domain.com" + veggieBuddha,
+      prepTime: "15min",
+      cookTime: "10min", 
+      totalTime: "25min",
+      servings: "2 servings",
+      difficulty: "Easy",
+      cuisine: "Healthy",
+      ingredients,
+      instructions,
+      keywords: "colorful buddha bowl meal prep healthy recipe, nutritious plant based dinner, quinoa roasted vegetables tahini dressing, high protein vegetarian bowl",
+      url: "https://your-domain.com/recipes/buddha-bowl"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "1 cup quinoa, cooked",
     "2 cups mixed greens (spinach, kale, arugula)",
@@ -55,7 +83,7 @@ const BuddhaBowl = () => {
           <div>
             <img 
               src={veggieBuddha} 
-              alt="Healthy Buddha Bowl"
+              alt="Colorful buddha bowl meal prep healthy recipe with quinoa, roasted vegetables, avocado and tahini dressing"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
             />
           </div>

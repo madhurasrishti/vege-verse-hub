@@ -4,9 +4,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import mushroomRisotto from "@/assets/mushroom-risotto.jpg";
 
 const MushroomRisotto = () => {
+  useEffect(() => {
+    document.title = "Creamy Mushroom Risotto Vegetarian Comfort Food Recipe | Elegant Italian";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Creamy mushroom risotto vegetarian comfort food recipe with wild mushrooms and parmesan. Elegant Italian dinner ready in 35 minutes for special occasions.');
+    }
+
+    const recipeData = {
+      name: "Creamy Mushroom Risotto Vegetarian Comfort Food",
+      description: "Rich and creamy arborio rice with wild mushrooms, herbs, and parmesan cheese. A classic Italian comfort food that's elegant enough for entertaining, ready in 35 minutes.",
+      image: "https://your-domain.com" + mushroomRisotto,
+      prepTime: "10min",
+      cookTime: "25min", 
+      totalTime: "35min",
+      servings: "4 servings",
+      difficulty: "Advanced",
+      cuisine: "Italian",
+      ingredients,
+      instructions,
+      keywords: "creamy mushroom risotto vegetarian comfort food recipe, elegant italian dinner, wild mushrooms parmesan cheese, restaurant quality risotto",
+      url: "https://your-domain.com/recipes/mushroom-risotto"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "1 1/2 cups Arborio rice",
     "6 cups warm vegetable broth",
@@ -51,7 +79,7 @@ const MushroomRisotto = () => {
           <div>
             <img 
               src={mushroomRisotto} 
-              alt="Creamy Mushroom Risotto"
+              alt="Creamy mushroom risotto vegetarian comfort food recipe with wild mushrooms, herbs and parmesan cheese"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
             />
           </div>

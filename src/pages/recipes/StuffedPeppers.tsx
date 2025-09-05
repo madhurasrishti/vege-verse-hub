@@ -4,9 +4,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import stuffedPeppers from "@/assets/stuffed-peppers.jpg";
 
 const StuffedPeppers = () => {
+  useEffect(() => {
+    document.title = "Quinoa Stuffed Bell Peppers Vegetarian Recipe | Healthy Family Dinner";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Quinoa stuffed bell peppers vegetarian recipe with black beans and cheese. Healthy family dinner that\'s colorful, nutritious and ready in 45 minutes.');
+    }
+
+    const recipeData = {
+      name: "Quinoa Stuffed Bell Peppers Vegetarian",
+      description: "Bell peppers stuffed with quinoa, vegetables, herbs, and melted cheese. A nutritious and colorful meal that's both filling and healthy, perfect for family dinners.",
+      image: "https://your-domain.com" + stuffedPeppers,
+      prepTime: "15min",
+      cookTime: "30min", 
+      totalTime: "45min",
+      servings: "4 servings",
+      difficulty: "Easy",
+      cuisine: "American",
+      ingredients,
+      instructions,
+      keywords: "quinoa stuffed bell peppers vegetarian recipe, healthy family dinner, colorful nutritious meal, high protein vegetarian comfort food",
+      url: "https://your-domain.com/recipes/stuffed-peppers"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "4 large bell peppers (any color), tops cut and seeds removed",
     "1 cup quinoa, cooked",
@@ -54,7 +82,7 @@ const StuffedPeppers = () => {
           <div>
             <img 
               src={stuffedPeppers} 
-              alt="Quinoa Stuffed Bell Peppers"
+              alt="Quinoa stuffed bell peppers vegetarian recipe with black beans, vegetables and melted cheese"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
             />
           </div>

@@ -4,9 +4,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import veggieTacos from "@/assets/veggie-tacos.jpg";
 
 const VeggieTacos = () => {
+  useEffect(() => {
+    document.title = "Loaded Black Bean Tacos Vegetarian Protein Recipe | Quick Mexican";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Loaded black bean tacos vegetarian protein recipe with fresh avocado and salsa. Quick Mexican comfort food ready in 20 minutes for busy weeknights.');
+    }
+
+    const recipeData = {
+      name: "Loaded Black Bean Tacos Vegetarian Protein",
+      description: "Soft tacos filled with seasoned black beans, avocado, and fresh salsa. Quick, healthy, and bursting with Mexican flavors, ready in just 20 minutes.",
+      image: "https://your-domain.com" + veggieTacos,
+      prepTime: "10min",
+      cookTime: "10min", 
+      totalTime: "20min",
+      servings: "4 servings",
+      difficulty: "Easy",
+      cuisine: "Mexican",
+      ingredients,
+      instructions,
+      keywords: "loaded black bean tacos vegetarian protein recipe, quick mexican comfort food, healthy avocado tacos, plant based weeknight dinner",
+      url: "https://your-domain.com/recipes/veggie-tacos"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "8 small corn or flour tortillas",
     "2 cans (15oz each) black beans, drained and rinsed",
@@ -55,7 +83,7 @@ const VeggieTacos = () => {
           <div>
             <img 
               src={veggieTacos} 
-              alt="Black Bean Tacos"
+              alt="Loaded black bean tacos vegetarian protein recipe with fresh avocado, salsa and Mexican spices"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
             />
           </div>

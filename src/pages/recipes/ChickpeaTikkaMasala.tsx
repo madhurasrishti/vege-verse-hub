@@ -4,9 +4,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import chickpeaCurry from "@/assets/chickpea-curry.jpg";
 
 const ChickpeaTikkaMasala = () => {
+  useEffect(() => {
+    document.title = "Authentic Chickpea Tikka Masala Indian Vegetarian Recipe | Restaurant Style";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Authentic chickpea tikka masala Indian vegetarian recipe with creamy tomato sauce. Restaurant-style comfort food ready in 30 minutes for busy weeknights.');
+    }
+
+    const recipeData = {
+      name: "Authentic Chickpea Tikka Masala Indian Vegetarian",
+      description: "Tender chickpeas in a spiced tomato-cream sauce, perfect with basmati rice. A comforting and flavorful vegetarian version of the classic Indian dish ready in just 30 minutes.",
+      image: "https://your-domain.com" + chickpeaCurry,
+      prepTime: "10min",
+      cookTime: "20min", 
+      totalTime: "30min",
+      servings: "6 servings",
+      difficulty: "Medium",
+      cuisine: "Indian",
+      ingredients,
+      instructions,
+      keywords: "authentic chickpea tikka masala indian vegetarian recipe, restaurant style comfort food, creamy tomato curry sauce, high protein plant based dinner",
+      url: "https://your-domain.com/recipes/chickpea-tikka-masala"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "2 cans (15oz each) chickpeas, drained and rinsed",
     "2 tbsp ghee or vegetable oil",
@@ -54,7 +82,7 @@ const ChickpeaTikkaMasala = () => {
           <div>
             <img 
               src={chickpeaCurry} 
-              alt="Chickpea Tikka Masala"
+              alt="Authentic chickpea tikka masala Indian vegetarian recipe with creamy tomato sauce and aromatic spices"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
             />
           </div>

@@ -4,9 +4,39 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import lentilBolognese from "@/assets/lentil-bolognese.jpg";
 
 const LentilBolognese = () => {
+  useEffect(() => {
+    // SEO Meta Tags
+    document.title = "Creamy Lentil Bolognese Pasta Recipe Vegan | Easy Plant-Based Italian";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Rich creamy lentil bolognese pasta recipe vegan - easy plant-based Italian comfort food ready in 35 minutes. High protein vegetarian dinner for busy weeknights.');
+    }
+
+    // JSON-LD Structured Data
+    const recipeData = {
+      name: "Creamy Lentil Bolognese Pasta Recipe Vegan",
+      description: "Rich and hearty lentil bolognese sauce served over fresh pasta with herbs and parmesan. A perfect plant-based alternative to traditional meat sauce that's ready in just 35 minutes.",
+      image: "https://your-domain.com" + lentilBolognese,
+      prepTime: "10min",
+      cookTime: "25min", 
+      totalTime: "35min",
+      servings: "4 servings",
+      difficulty: "Easy",
+      cuisine: "Italian",
+      ingredients,
+      instructions,
+      keywords: "creamy lentil bolognese pasta recipe vegan, easy plant based Italian comfort food, high protein vegetarian dinner busy weeknights, healthy meat sauce alternative",
+      url: "https://your-domain.com/recipes/lentil-bolognese"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "1 cup green or brown lentils",
     "2 tbsp olive oil",
@@ -52,7 +82,7 @@ const LentilBolognese = () => {
           <div>
             <img 
               src={lentilBolognese} 
-              alt="Lentil Bolognese Pasta"
+              alt="Creamy vegan lentil bolognese pasta recipe with fresh herbs and plant-based protein for easy weeknight dinner"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
             />
           </div>

@@ -4,9 +4,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { generateRecipeJsonLd, injectJsonLd } from "@/utils/jsonLd";
 import palakPaneer from "@/assets/palak-paneer.jpg";
 
 const PalakPaneer = () => {
+  useEffect(() => {
+    document.title = "Restaurant Style Palak Paneer Spinach Curry Recipe | Authentic Indian";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Restaurant style palak paneer spinach curry recipe with homemade paneer. Authentic Indian vegetarian comfort food ready in 40 minutes.');
+    }
+
+    const recipeData = {
+      name: "Restaurant Style Palak Paneer Spinach Curry",
+      description: "Fresh spinach curry with homemade paneer cheese and aromatic spices. A classic North Indian dish that's both nutritious and delicious, ready in just 40 minutes.",
+      image: "https://your-domain.com" + palakPaneer,
+      prepTime: "15min",
+      cookTime: "25min", 
+      totalTime: "40min",
+      servings: "5 servings",
+      difficulty: "Medium",
+      cuisine: "Indian",
+      ingredients,
+      instructions,
+      keywords: "restaurant style palak paneer spinach curry recipe, authentic indian vegetarian comfort food, homemade paneer cheese, healthy green curry",
+      url: "https://your-domain.com/recipes/palak-paneer"
+    };
+    
+    const jsonLd = generateRecipeJsonLd(recipeData);
+    injectJsonLd(jsonLd);
+  }, []);
   const ingredients = [
     "1 lb fresh spinach, washed and chopped",
     "8 oz paneer cheese, cubed",
@@ -53,7 +81,7 @@ const PalakPaneer = () => {
           <div>
             <img 
               src={palakPaneer} 
-              alt="Palak Paneer"
+              alt="Restaurant style palak paneer spinach curry recipe with homemade paneer cheese and authentic Indian spices"
               className="w-full h-[400px] object-cover rounded-lg shadow-elegant"
             />
           </div>
