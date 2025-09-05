@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import RecipeCard from "@/components/RecipeCard";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
@@ -172,6 +173,8 @@ const Cuisines = () => {
           )}
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };

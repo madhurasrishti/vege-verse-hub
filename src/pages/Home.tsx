@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import RecipeCard from "@/components/RecipeCard";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Leaf, Heart, Globe } from "lucide-react";
@@ -208,6 +209,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };
