@@ -15,4 +15,3 @@ Allow: /
 
 
 Sitemap: https://veggie-heaven.vercel.app/sitemap.xml
-Host: veggie-heaven.vercel.app
