@@ -1,79 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-
+    <!-- Basic SEO -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Veggie Heaven | Vegetarian Alternative Recipes</title>
-    <meta name="description" content="Discover easy plant-based recipes like spicy vegetarian lentil curry, quick vegan chickpea wraps, and one-pot soups — beginner-friendly vegetarian dinners." />
+    <meta
+      name="description"
+      content="VeggieHeaven offers easy vegetarian recipes, healthy plant-based meals, and creative vegan alternatives. Discover global cuisines, meat substitutes, and delicious vegetarian cooking ideas."
+    />
+    <meta
+      name="keywords"
+      content="vegetarian recipes, vegan recipes, plant-based meals, healthy vegetarian cooking, meat substitutes, vegan alternatives, Veggie Heaven"
+    />
+    <meta name="author" content="Veggie Heaven" />
+    <link
+      rel="canonical"
+      href="https://5ccf5f4d-ee46-4abf-9659-6cab3862580f.lovableproject.com/"
+    />
 
-    <!-- Keywords (mix of long-tail + short-tail from site content) -->
-    <meta name="keywords" content="spicy vegetarian lentil curry recipe, lentil curry, plant-based recipes, vegan chickpea wrap recipe, stuffed bell peppers recipe, one pot mushroom barley soup, zucchini noodle recipes, sweet potato chickpea curry, breakfast smoothie with oats, roasted eggplant dip, vegetarian dinner ideas" />
-
-    <link rel="canonical" href="https://veggie-heaven.vercel.app/" />
-    <link rel="alternate" hreflang="en" href="https://veggie-heaven.vercel.app/" />
-
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Spicy Vegetarian Lentil Curry | Veggie Heaven" />
-    <meta property="og:description" content="Easy plant-based recipes: spicy lentil curry, vegan wraps and quick one-pot meals." />
-    <meta property="og:url" content="https://veggie-heaven.vercel.app/" />
-    <meta property="og:image" content="https://veggie-heaven.vercel.app/hero-veggie-bowl.jpg" />
+    <meta
+      property="og:url"
+      content="https://5ccf5f4d-ee46-4abf-9659-6cab3862580f.lovableproject.com/"
+    />
+    <meta
+      property="og:title"
+      content="Veggie Heaven | Vegetarian Alternative Recipes"
+    />
+    <meta
+      property="og:description"
+      content="Explore Veggie Heaven's collection of healthy vegetarian recipes, vegan dishes, and plant-based cooking guides. Learn how to turn non-veg recipes into tasty vegetarian alternatives."
+    />
+    <meta
+      property="og:image"
+      content="https://5ccf5f4d-ee46-4abf-9659-6cab3862580f.lovableproject.com/hero-veggie-bowl.jpg"
+    />
     <meta property="og:site_name" content="Veggie Heaven" />
-    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Spicy Vegetarian Lentil Curry | Veggie Heaven" />
-    <meta name="twitter:description" content="Easy plant-based recipes: spicy lentil curry, vegan wraps, and quick one-pot meals." />
-    <meta name="twitter:image" content="https://veggie-heaven.vercel.app/hero-veggie-bowl.jpg" />
+    <meta
+      name="twitter:url"
+      content="https://5ccf5f4d-ee46-4abf-9659-6cab3862580f.lovableproject.com/"
+    />
+    <meta
+      name="twitter:title"
+      content="Veggie Heaven | Easy Vegetarian Recipes & Plant-Based Cooking"
+    />
+    <meta
+      name="twitter:description"
+      content="Discover vegetarian recipes, plant-based alternatives, and global cuisines with VeggieCook. Learn how to cook healthy, delicious vegetarian meals easily."
+    />
+    <meta
+      name="twitter:image"
+      content="https://5ccf5f4d-ee46-4abf-9659-6cab3862580f.lovableproject.com/hero-veggie-bowl.jpg"
+    />
 
-    <!-- Performance / resource hints -->
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#22c55e" />
+
+    <!-- Favicon (improves SEO and branding) -->
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="msapplication-TileImage" content="/favicon.png" />
+
+    <!-- Performance optimizations -->
+    <link rel="preload" as="image" href="/src/assets/hero-veggie-bowl.jpg" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="/src/assets/hero-veggie-bowl.jpg" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <!-- Sitemap hint -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-
-    <!-- JSON-LD (site + organization + basic homepage) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "name": "Veggie Heaven",
-          "url": "https://veggie-heaven.vercel.app/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://veggie-heaven.vercel.app/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "Organization",
-          "name": "Veggie Heaven",
-          "url": "https://veggie-heaven.vercel.app/",
-          "logo": { "@type": "ImageObject", "url": "https://veggie-heaven.vercel.app/favicon.png" }
-        }
-      ]
-    }
-    </script>
-
-    <!-- Defer main JS (critical rendering path) -->
-    <script type="module" defer src="/src/main.tsx"></script>
-    <meta name="theme-color" content="#22c55e" />
   </head>
-  <body>
-    <noscript>
-      <div style="padding:20px;font-family:Arial, sans-serif;">
-        <h1>Spicy Vegetarian Lentil Curry &amp; Easy Plant-Based Recipes</h1>
-        <p>Discover easy plant-based recipes like spicy lentil curry, vegan chickpea wraps, and one-pot soups.</p>
-      </div>
-    </noscript>
 
+  <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
