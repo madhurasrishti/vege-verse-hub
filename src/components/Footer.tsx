@@ -74,44 +74,11 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="font-semibold">Connect With Us</h3>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>hello@veggieheaven.com</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
-                <span>Plant-Based Kitchen, USA</span>
-              </div>
-            </div>
-          </div>
-        </div>
         
         {/* Bottom Section */}
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <span>© {currentYear} Veggie Heaven®. All rights reserved.</span>
-          </div>
-          
-          <div className="flex items-center space-x-6 text-sm">
-            <Link to="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
-            </Link>
-            <Link to="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Contact
-            </Link>
-          </div>
-        </div>
       </div>
     </footer>
   );
