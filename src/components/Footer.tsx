@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-muted/50 border-t">
       <div className="container py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -73,12 +73,14 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
+        </div>
         
         {/* Bottom Section */}
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <span>© {currentYear} Veggie Heaven®. All rights reserved.</span>
+          </div>
+        </div>
       </div>
     </footer>
   );
